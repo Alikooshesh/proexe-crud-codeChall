@@ -1,5 +1,5 @@
 import {Button, Modal, Table} from "react-bootstrap";
-import {IuserData, remove} from "../../redux/reducers/dataReducer/dataReducer";
+import {add, IuserData, remove} from "../../redux/reducers/dataReducer/dataReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import {Link} from "react-router-dom";
@@ -16,7 +16,15 @@ const UserList = () => {
         <div className={'px-0 pt-3'}>
             <div className={'px-3 d-flex justify-content-between align-items-center border-bottom pb-3'}>
                 <p className={'m-0 fs-3'}>User list</p>
-                <Button variant={'primary'}>Add New</Button>
+                <Button variant={'primary'}
+                    onClick={()=> dispatch(add({
+                                                        id:userList.length === 0 ? 1 :
+                                                            userList[userList.length-1].id + 1,
+                                                        name:'ali',
+                                                        email:'ali@ali.com',
+                                                        city:'est',
+                                                        userName:'ak'}))}
+                >Add New</Button>
             </div>
             <div className={'px-1 pt-1'}>
 
@@ -58,6 +66,8 @@ const UserList = () => {
                     </tbody>
                 </Table>
             </div>
+
+            {/*remove modal show*/}
             <Modal show={removeModalShow} onHide={()=> setRemoveModalShow(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Delete</Modal.Title>
