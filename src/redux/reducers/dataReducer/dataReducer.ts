@@ -18,14 +18,16 @@ const dataReducer = createSlice({
     reducers: {
         add: (state, action) => {
             const newUser: IuserData = {
-                id : 1,
+                id : action.payload.id || state.userList.length+1,
                 name : action.payload.name,
                 userName : action.payload.userName,
                 email : action.payload.email,
                 city : action.payload.city
             }
 
-            state.userList.push(newUser)
+            if (!state.userList[newUser.id - 1]){
+                state.userList.push(newUser)
+            }
         },
         remove: (state, action) => {
             state.userList = state.userList.filter(user => user.id !== action.payload.id)
