@@ -33,11 +33,18 @@ const dataReducer = createSlice({
             state.userList = state.userList.filter(user => user.id !== action.payload.id)
         },
         editUser: (state, action) => {
-            const userFinder: number = state.userList.findIndex(user => user.id === action.payload.id)
+            const userFinder: number = state.userList.findIndex(user => user.id == action.payload.id)
+            if (userFinder >= 0)  {
+                const editedUser: IuserData = {
+                    id : action.payload.id,
+                    name : action.payload.name,
+                    userName : state.userList[userFinder].userName,
+                    email : action.payload.email,
+                    city : state.userList[userFinder].city
+                }
+                state.userList.splice(userFinder,1,editedUser)
+            }
 
-            userFinder >= 0 && (
-                state.userList[userFinder] = {...state.userList[userFinder] , name : action.payload.name , email : action.payload.email}
-            )
         }
 
     }

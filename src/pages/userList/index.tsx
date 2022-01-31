@@ -2,6 +2,7 @@ import {Button, Modal, Table} from "react-bootstrap";
 import {IuserData, remove} from "../../redux/reducers/dataReducer/dataReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 const UserList = () => {
 
@@ -41,7 +42,9 @@ const UserList = () => {
                                 <td className={'py-4'}>{user.email}</td>
                                 <td className={'py-4'}>{user.city}</td>
                                 <td className={'py-4'}>
-                                    <Button variant={'warning'} className={'w-75 text-light'}>Edit</Button>
+                                    <Link to={`/edit/${user.id}`}>
+                                        <Button variant={'warning'} className={'w-75 text-light'}>Edit</Button>
+                                    </Link>
                                 </td>
                                 <td className={'py-4'}>
                                     <Button variant={'danger'} className={'w-75 text-light'} onClick={()=> {
