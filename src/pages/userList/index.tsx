@@ -40,31 +40,36 @@ const UserList = () => {
                         <th className={'py-4'}>Delete</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    {userList.map((user)=>{
-                        return(
-                            <tr key={`user-${user.id}`}>
-                                <td className={'py-4'}>{user.id}</td>
-                                <td className={'py-4'}>{user.name}</td>
-                                <td className={'py-4'}>{user.userName}</td>
-                                <td className={'py-4'}>{user.email}</td>
-                                <td className={'py-4'}>{user.city}</td>
-                                <td className={'py-4'}>
-                                    <Link to={`/edit/${user.id}`}>
-                                        <Button variant={'warning'} className={'w-75 text-light'}>Edit</Button>
-                                    </Link>
-                                </td>
-                                <td className={'py-4'}>
-                                    <Button variant={'danger'} className={'w-75 text-light'} onClick={()=> {
-                                        setUserRemoveId(user.id)
-                                        setRemoveModalShow(true)
-                                    }}>delete</Button>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
+
+                    {userList.length !== 0 &&
+                        <tbody>
+                        {userList.map((user) => {
+                            return (
+                                <tr key={`user-${user.id}`}>
+                                    <td className={'py-4'}>{user.id}</td>
+                                    <td className={'py-4'}>{user.name}</td>
+                                    <td className={'py-4'}>{user.userName}</td>
+                                    <td className={'py-4'}>{user.email}</td>
+                                    <td className={'py-4'}>{user.city}</td>
+                                    <td className={'py-4'}>
+                                        <Link to={`/edit/${user.id}`}>
+                                            <Button variant={'warning'} className={'w-75 text-light'}>Edit</Button>
+                                        </Link>
+                                    </td>
+                                    <td className={'py-4'}>
+                                        <Button variant={'danger'} className={'w-75 text-light'} onClick={() => {
+                                            setUserRemoveId(user.id)
+                                            setRemoveModalShow(true)
+                                        }}>delete</Button>
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                        </tbody>
+                        }
+
                 </Table>
+                {userList.length === 0 && <p className={'w-100 fs-3 text-center text-danger'}>There is no user</p>}
             </div>
 
             {/*remove modal show*/}
