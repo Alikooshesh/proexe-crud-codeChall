@@ -52,8 +52,14 @@ const EditUser = () => {
 
     const handleEdit = () => {
         if(!errEmailInput && !errNameInput){
-            dispatch(editUser({id : urlParam.id , name : nameInputVal , email : emailInputVal}))
-            navigate('/')
+            const emailCheck = userList.findIndex((user:IuserData) => user.email === emailInputVal)
+
+            if(emailCheck < 0) {
+                dispatch(editUser({id : urlParam.id , name : nameInputVal , email : emailInputVal}))
+                navigate('/')
+            }else {
+                setErrEmailInput('we have a user with this email')
+            }
         }
     }
 
