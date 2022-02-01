@@ -31,6 +31,7 @@ const dataReducer = createSlice({
 
             if (userFinder === -1){
                 state.userList.push(newUser)
+                state.userList.sort((a,b) => a.id - b.id)
                 newUser.id > 10 && axios.post(ApiLink,newUser)
                     .then(data => console.log(data.data))
                     .catch(err => console.log(err))
