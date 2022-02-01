@@ -9,6 +9,7 @@ import {useDispatch} from "react-redux";
 import axios from "axios";
 import {ApiLink} from "./Api/ApiLink";
 import {add} from "./redux/reducers/dataReducer/dataReducer";
+import AddUser from "./pages/addUser";
 
 function App() {
 
@@ -30,7 +31,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<UserList />} />
-          <Route path="/edit/:id" element={<EditUser />} />
+            <Route path="/add" element={<AddUser />} />
+            <Route path="/edit/:id" element={<EditUser />} />
+            <Route path="*" element={<UserList />} />
         </Route>
       </Routes>
   );
