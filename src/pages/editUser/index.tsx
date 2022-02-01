@@ -54,7 +54,8 @@ const EditUser = () => {
         if(!errEmailInput && !errNameInput){
             const emailCheck = userList.findIndex((user:IuserData) => user.email === emailInputVal)
 
-            if(emailCheck < 0) {
+            // @ts-ignore
+            if(emailCheck < 0 || userList[emailCheck].id == urlParam.id) {
                 dispatch(editUser({id : urlParam.id , name : nameInputVal , email : emailInputVal}))
                 navigate('/')
             }else {
